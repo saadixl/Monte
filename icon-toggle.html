@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 
 <dom-module id="icon-toggle">
@@ -7,20 +7,23 @@
   <template>
 
     <style>
-      /* local DOM styles go here */
+      /* shadow DOM styles go here */
       :host {
         display: inline-block;
       }
     </style>
 
-    <!-- local DOM goes here -->
+    <!-- shadow DOM goes here -->
     <span>Not much here yet.</span>
   </template>
 
   <script>
-  Polymer({
-    is: 'icon-toggle',
-  });
+      class IconToggle extends Polymer.Element {
+        static get is() {
+          return "icon-toggle";
+        }
+      }
+      customElements.define(IconToggle.is, IconToggle);
   </script>
 
 </dom-module>
