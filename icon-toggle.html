@@ -3,7 +3,6 @@
 
 <dom-module id="icon-toggle">
 
-
   <template>
 
     <style>
@@ -18,13 +17,15 @@
   </template>
 
   <script>
-      class IconToggle extends Polymer.Element {
-        static get is() {
-          return "icon-toggle";
-        }
+    class IconToggle extends Polymer.Element {
+      static get is() {
+      return "icon-toggle";
       }
-      customElements.define(IconToggle.is, IconToggle);
+      constructor() {
+        super();
+      }
+    }
+    customElements.define(IconToggle.is, IconToggle);
   </script>
-
 </dom-module>
 
