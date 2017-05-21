@@ -1,0 +1,25 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="card-component">
+	<template>
+		<style>
+			.card {
+				border-radius: 5px;
+				height: 380px;
+				width: 260px;
+				float: left;
+				background: #333;
+				margin: 20px;
+			}
+		</style>
+		<div class="card"></div>
+	</template>
+	<script>
+		class CardComponent extends Polymer.Element {
+			static get is() {
+				return "card-component"
+			}
+		}
+		customElements.define(CardComponent.is, CardComponent);
+	</script>
+</dom-module>

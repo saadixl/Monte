@@ -1,0 +1,31 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="components/card.html">
+
+<dom-module id="root-component">
+	<template>
+		<style>
+			.wrapper {
+				text-align: center;
+			}
+			.inner {
+				display: inline-block;
+				margin-top: 100px;
+			}
+		</style>
+		<div class="wrapper">
+			<div class="inner">
+				<card-component></card-component>
+				<card-component></card-component>
+				<card-component></card-component>
+			</div>
+		</div>
+	</template>
+	<script>
+		class RootComponent extends Polymer.Element {
+			static get is() {
+				return "root-component"
+			}
+		}
+		customElements.define(RootComponent.is, RootComponent);
+	</script>
+</dom-module>
