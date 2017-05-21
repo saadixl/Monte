@@ -8,16 +8,37 @@
 				height: 380px;
 				width: 260px;
 				float: left;
-				background: #333;
+				background: var(--card-component-highlighted, #333);
 				margin: 20px;
+				cursor: pointer;
 			}
 		</style>
-		<div class="card"></div>
+		<div class="card" on-click="onCardClick"></div>
 	</template>
 	<script>
 		class CardComponent extends Polymer.Element {
 			static get is() {
 				return "card-component"
+			}
+
+			onCardClick(e) {
+				this.highlight();
+				let self = this;
+				setTimeout(function() {
+					self.unHighlight();
+				}, 1000)
+			}
+
+			highlight() {
+				this.updateStyles({
+					'--card-component-highlighted': '#ccc',
+				});
+			}
+
+			unHighlight() {
+				this.updateStyles({
+					'--card-component-highlighted': '#333',
+				});
 			}
 		}
 		customElements.define(CardComponent.is, CardComponent);

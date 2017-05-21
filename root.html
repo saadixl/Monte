@@ -14,16 +14,51 @@
 		</style>
 		<div class="wrapper">
 			<div class="inner">
-				<card-component></card-component>
-				<card-component></card-component>
-				<card-component></card-component>
+				<card-component data-index="1" on-click="onCardClick"></card-component>
+				<card-component data-index="2" on-click="onCardClick"></card-component>
+				<card-component data-index="3" on-click="onCardClick"></card-component>
 			</div>
+			<h2>{{message}}</h2>
 		</div>
 	</template>
 	<script>
 		class RootComponent extends Polymer.Element {
 			static get is() {
 				return "root-component"
+			}
+
+			static get properties() {
+				return {
+					message: {
+						type: String,
+						value: ''
+					}
+				}
+			}
+
+			onCardClick(e) {
+				this.playGame(e.target.dataset.index);
+			}
+
+			playGame(index) {
+				let currentValue = this.getRandomInt(1, 3);
+				if(parseInt(index) === parseInt(currentValue)) {
+					this.message = "You've guessed beautifully! You Won!";
+				} else {
+					this.message = `Guessing is not your game. It was card ${currentValue}!`;
+				}
+				this.clearMessage();
+			}
+
+			clearMessage() {
+				let self = this;
+				setTimeout(function() {
+					self.message = '';
+				}, 1200)
+			}
+
+			getRandomInt(min, max) {
+				return Math.floor(Math.random() * (max - min + 1)) + min;
 			}
 		}
 		customElements.define(RootComponent.is, RootComponent);
