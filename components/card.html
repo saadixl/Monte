@@ -11,7 +11,10 @@
 					float: left;
 					margin: 20px;
 					cursor: pointer;
-					background: #007f00;
+					border: 1px solid #333;
+					background: url("../../img/card.png") no-repeat;
+					background-position: center;
+					background-size: contain;
 				}
 			</style>
 			<div class="card-selected"></div>
@@ -23,9 +26,12 @@
 					height: 380px;
 					width: 260px;
 					float: left;
+					border: 1px solid #333;
 					background: var(--card-component-highlighted, #333);
 					margin: 20px;
 					cursor: pointer;
+					background-position: center;
+					background-size: contain;
 				}
 			</style>
 			<div class="card" on-click="onCardClick"></div>
@@ -49,12 +55,12 @@
 				this.highlight();
 				setTimeout(() => {
 					this.unHighlight();
-				}, 1500)
+				}, 1000)
 			}
 
 			highlight() {
 				this.updateStyles({
-					'--card-component-highlighted': 'red',
+					'--card-component-highlighted': 'url(../../img/sadface.jpg) no-repeat',
 				});
 			}
 			unHighlight() {

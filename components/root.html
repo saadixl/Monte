@@ -78,7 +78,7 @@
 				let currentValue = this.getRandomInt(1, 3);
 				this.updateCardValues(currentValue);
 				if(parseInt(index) === parseInt(currentValue)) {
-					this.message = "You Won!";
+					this.message = "You won!";
 				} else {
 					this.message = `Guessing is not your game.`;
 				}
@@ -89,7 +89,7 @@
 				this.clearInt = setTimeout(() => {
 					this.clearMessage();
 					this.resetCardValues();
-				}, 1500)
+				}, 1000)
 			}
 
 			clearMessage() {
