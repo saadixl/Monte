@@ -2,43 +2,47 @@
 
 <dom-module id="card-component">
 	<template>
-		<style>
-			.card {
-				border-radius: 5px;
-				height: 380px;
-				width: 260px;
-				float: left;
-				background: var(--card-component-highlighted, #333);
-				margin: 20px;
-				cursor: pointer;
-			}
-		</style>
-		<div class="card" on-click="onCardClick"></div>
-	</template>
+		<template is="dom-if" if="{{selected}}">
+			<style>
+				.card-selected {
+					border-radius: 5px;
+					height: 380px;
+					width: 260px;
+					float: left;
+					margin: 20px;
+					cursor: pointer;
+					background: red;
+				}
+			</style>
+			<div class="card-selected"></div>
+		</template>
+		<template is="dom-if" if="{{!selected}}">
+			<style>
+				.card {
+					border-radius: 5px;
+					height: 380px;
+					width: 260px;
+					float: left;
+					background: #ddd;
+					margin: 20px;
+					cursor: pointer;
+				}
+			</style>
+			<div class="card"></div>
+		</template></template>
 	<script>
 		class CardComponent extends Polymer.Element {
 			static get is() {
 				return "card-component"
 			}
 
-			onCardClick(e) {
-				this.highlight();
-				let self = this;
-				setTimeout(function() {
-					self.unHighlight();
-				}, 1000)
-			}
-
-			highlight() {
-				this.updateStyles({
-					'--card-component-highlighted': '#ccc',
-				});
-			}
-
-			unHighlight() {
-				this.updateStyles({
-					'--card-component-highlighted': '#333',
-				});
+			static get properties() {
+				return {
+					selected: {
+						type: Boolean,
+						value: false
+					}
+				}
 			}
 		}
 		customElements.define(CardComponent.is, CardComponent);

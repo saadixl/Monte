@@ -14,9 +14,9 @@
 		</style>
 		<div class="wrapper">
 			<div class="inner">
-				<card-component data-index="1" on-click="onCardClick"></card-component>
-				<card-component data-index="2" on-click="onCardClick"></card-component>
-				<card-component data-index="3" on-click="onCardClick"></card-component>
+				<card-component selected="[[card1]]" data-index="1" on-click="onCardClick"></card-component>
+				<card-component selected="[[card2]]" data-index="2" on-click="onCardClick"></card-component>
+				<card-component selected="[[card3]]" data-index="3" on-click="onCardClick"></card-component>
 			</div>
 			<h2>{{message}}</h2>
 		</div>
@@ -32,7 +32,19 @@
 					message: {
 						type: String,
 						value: ''
-					}
+					},
+					card1: {
+						type: Boolean,
+						value: false
+					},
+					card2: {
+						type: Boolean,
+						value: false
+					},
+					card3: {
+						type: Boolean,
+						value: false
+					},
 				}
 			}
 
@@ -40,21 +52,50 @@
 				this.playGame(e.target.dataset.index);
 			}
 
+			updateCardValues(currentValue) {
+				if(currentValue === 1) {
+					this.card1 = true;
+					this.card2 = false;
+					this.card3 = false;
+				}
+				else if(currentValue === 2) {
+					this.card2 = true;
+					this.card1 = false;
+					this.card3 = false;
+				}
+				else if(currentValue === 3) {
+					this.card3 = true;
+					this.card1 = false;
+					this.card2 = false;
+				}
+			}
+
 			playGame(index) {
 				let currentValue = this.getRandomInt(1, 3);
+				this.updateCardValues(currentValue);
 				if(parseInt(index) === parseInt(currentValue)) {
 					this.message = "You've guessed beautifully! You Won!";
 				} else {
 					this.message = `Guessing is not your game. It was card ${currentValue}!`;
 				}
-				this.clearMessage();
+				this.clearAll();
+			}
+
+			clearAll() {
+				setTimeout(() => {
+					this.clearMessage();
+					this.resetCardValues();
+				}, 1500)
 			}
 
 			clearMessage() {
-				let self = this;
-				setTimeout(function() {
-					self.message = '';
-				}, 1200)
+				this.message = '';
+			}
+
+			resetCardValues() {
+				this.card1 = false;
+				this.card2 = false;
+				this.card3 = false;
 			}
 
 			getRandomInt(min, max) {
