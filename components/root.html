@@ -45,10 +45,14 @@
 						type: Boolean,
 						value: false
 					},
+					clearInt: {
+						type: Object
+					}
 				}
 			}
 
 			onCardClick(e) {
+				clearInterval(this.clearInt);
 				this.playGame(e.target.dataset.index);
 			}
 
@@ -82,7 +86,7 @@
 			}
 
 			clearAll() {
-				setTimeout(() => {
+				this.clearInt = setTimeout(() => {
 					this.clearMessage();
 					this.resetCardValues();
 				}, 1500)
